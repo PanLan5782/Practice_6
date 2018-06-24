@@ -14,7 +14,7 @@ namespace Practice_6
             double a2 = InputData("a2=");
             double a3 = InputData("a3=");
             double E = InputData("E=");
-            int N = (int)InputData("N=");// приведение типов
+            int N = InputIntegerData("N=");// приведение типов
 
             List<double> l = FindItems(E,N,a1,a2,a3);
 
@@ -37,7 +37,21 @@ namespace Practice_6
             while (!ok);
             return v;
         }
+        public static int InputIntegerData(String prompt)
+        {
+            bool ok = true;
+            int v = 0;
+            do
+            {
+                Console.Write(prompt);
+                ok = int.TryParse(Console.ReadLine(), out v);
 
+                if (!ok||v<=0) 
+                    Console.WriteLine("Введено не коректное значение (число должно быть положительным целым)");
+            }
+            while (!ok ||v<=0);
+            return v;
+        }
         public static List<double> FindItems(double E, int N, double a1, double a2, double a3)
         {
             List<double> R = new List<double>();
